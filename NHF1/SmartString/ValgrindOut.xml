@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: /media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString </line>
+</preamble>
+
+<pid>5805</pid>
+<ppid>32026</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--leak-check=full</arg>
+    <arg>--track-origins=yes</arg>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/ValgrindOut.xml</arg>
+  </vargv>
+  <argv>
+    <exe>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</exe>
+    <arg></arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.083 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:01.197 </time>
+</status>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+</suppcounts>
+
+</valgrindoutput>
+

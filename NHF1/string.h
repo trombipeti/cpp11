@@ -106,7 +106,6 @@ public:
     String & operator=( String && rval );
     String & operator=( const char* str );
 
-    String operator+( String const & other );
 
     /** \brief
      * Törli a Stringet. A mutatott StringValue nem törlődik, csak csökken eggyel a referenciaszámlálója.
@@ -146,6 +145,15 @@ private:
 
     StringValue* m_stringValue;
 };
+
+/** \brief
+ * Összefűzi a paraméterként kapott két Stringet
+ * \param lhs Az új string elejére kerülő rész.
+ * \param rhs Az új string végé kerülő rész.
+ * \return Az összefűzött String. Pl. lhs="hello ", rhs="world" -> "hello world"
+ *
+ */
+String operator+( String const& lhs, String const& rhs );
 
 #endif /* STRING_H */
 

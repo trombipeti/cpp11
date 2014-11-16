@@ -1,3 +1,0 @@
-/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/BTree.cpp:12: warning: argument 'A' of command @param is not found in the argument list of BTree< T >::BTree(T val)
-/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/BTree.cpp:12: warning: The following parameters of BTree::BTree(T val) are not documented:
-  parameter 'val'

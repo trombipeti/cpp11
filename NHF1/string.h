@@ -1,7 +1,12 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include <cstdio>
 #include <cstring>
+
+#include <iostream>
+
+/** \file */
 
 /** \brief
     * String értékeket és a hozzájuk tartozó referenciaszámlálókat tartalmazó
@@ -20,6 +25,13 @@ public:
         m_size = strlen( str ) + 1; // Az strlen()-ben nincs a lezáró 0!
         m_string = new char[m_size];
         strcpy( m_string, str ); // Bele fog férni, nem kell strncpy(), és ez így gyorsabb
+    }
+
+    StringValue( const char* lhs, const char* rhs ) : m_refCount {1}
+    {
+        m_size = strlen( lhs ) + strlen( rhs ) + 1; // +1 -> lezáró 0
+        m_string = new char[m_size];
+        snprintf( m_string, m_size, "%s%s", lhs, rhs );
     }
 
     operator const char*() const
@@ -63,10 +75,14 @@ public:
      * (StringValue::increase_refCount(), StringValue::decrease_refCount())
      * \return A referenciaszámláló értéke.
      */
-
     unsigned long int getRefCount()
     {
         return m_refCount;
+    }
+
+    size_t getSize() const
+    {
+        return m_size;
     }
 private:
     unsigned long int m_refCount;
@@ -91,6 +107,7 @@ public:
      */
     String( const char* str  = "" );
 
+
     /** \brief
      * Új Stringet hoz létre egy másik Stringből.
      * Nem másolja le a StringValue-ját a másiknak, csak elkéri a referenciát rá (ez megnöveli a referenciaszámlálót)
@@ -112,6 +129,11 @@ public:
      * (Persze ilyenkor törlődhet, ha a referenciaszámláló 0 lesz...)
      */
     ~String();
+
+    size_t length() const
+    {
+        return m_stringValue->getSize();
+    }
 
     operator const char*() const
     {
@@ -151,9 +173,20 @@ private:
  * \param lhs Az új string elejére kerülő rész.
  * \param rhs Az új string végé kerülő rész.
  * \return Az összefűzött String. Pl. lhs="hello ", rhs="world" -> "hello world"
- *
  */
 String operator+( String const& lhs, String const& rhs );
+
+/** \brief
+ * Hozzáfűz egy Stringhez megy másik Stringet.
+ * \param lhs A String, amihez hozzá szeretnénk fűzni.
+ * \param rhs A hozzáfűzendő String.
+ * \return Az lhs paraméter, végére fűzve a jobb oldali részstring.
+ */
+String operator+=( String & lhs, String const& rhs );
+
+std::ostream& operator<<( std::ostream& os, String const& str );
+
+std::istream& operator>>(std::istream& is, String & str);
 
 #endif /* STRING_H */
 

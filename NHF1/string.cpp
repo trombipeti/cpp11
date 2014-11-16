@@ -5,9 +5,11 @@
 String::String( const char * str )
 {
 #ifdef _DEBUG_
+    std::cout << "\e[1;32m";
     std::cout << ">> String::String(const char*), param: " << str;
     ++_Num_Instances;
     std::cout << " (" << _Num_Instances << ") " << std::endl;
+    std::cout << "\e[0m";
 #endif // _DEBUG_
     m_stringValue = new StringValue { str };
 }
@@ -15,9 +17,11 @@ String::String( const char * str )
 String::String( String const& other )
 {
 #ifdef _DEBUG_
+    std::cout << "\e[1;32m";
     std::cout << ">> String::String(String const&), param: " << other;
     ++_Num_Instances;
     std::cout << " (" << _Num_Instances << ") " << std::endl;
+    std::cout << "\e[0m";
 #endif // _DEBUG_
     m_stringValue = other.obtain_stringValue();
 }
@@ -25,9 +29,11 @@ String::String( String const& other )
 String::String( String && rval )
 {
 #ifdef _DEBUG_
+    std::cout << "\e[1;32m";
     std::cout << ">> String::String(String&&), param: " << rval;
     ++_Num_Instances;
     std::cout << " (" << _Num_Instances << ") " << std::endl;
+    std::cout << "\e[0m";
 #endif // _DEBUG_
     m_stringValue = rval.obtain_stringValue();
 }
@@ -75,10 +81,45 @@ String & String::operator=( String && rval )
 String::~String()
 {
 #ifdef _DEBUG_
+    std::cout << "\e[1;31m";
     std::cout << ">> String::~String()";
     --_Num_Instances;
     std::cout << " (" << _Num_Instances << ") " << std::endl;
+    std::cout << "\e[0m";
 #endif // _DEBUG_
     abandon_stringValue();
+}
+
+String operator+( String const& lhs, String const& rhs )
+{
+#ifdef _DEBUG_
+    std::cout << ">> operator+(String const&, String const&)" << " params: " << lhs << " " << rhs << std::endl;
+#endif // _DEBUG_
+    std::string a = ( const char* )lhs;
+    a.append( ( const char* )rhs );
+    return String {a.c_str()};
+}
+
+String operator+=( String & lhs, String const& rhs )
+{
+#ifdef _DEBUG_
+    std::cout << ">> operator+=(String &, String const&)" << " params: " << lhs << " " << rhs << std::endl;
+#endif // _DEBUG_
+    lhs = lhs + rhs;
+    return lhs;
+}
+
+std::ostream& operator<<( std::ostream& os, String const& str )
+{
+    os << ( const char* ) str;
+    return os;
+}
+
+std::istream& operator>>(std::istream& is, String & str)
+{
+    std::string temp;
+    is >> temp;
+    str = temp.c_str();
+    return is;
 }
 

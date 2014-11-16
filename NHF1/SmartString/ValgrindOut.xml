@@ -12,7 +12,7 @@
   <line>Command: /media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString </line>
 </preamble>
 
-<pid>5805</pid>
+<pid>20621</pid>
 <ppid>32026</ppid>
 <tool>memcheck</tool>
 
@@ -32,14 +32,64 @@
 
 <status>
   <state>RUNNING</state>
-  <time>00:00:00:00.083 </time>
+  <time>00:00:00:00.099 </time>
 </status>
 
 
 <status>
   <state>FINISHED</state>
-  <time>00:00:00:01.197 </time>
+  <time>00:00:00:00.966 </time>
 </status>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>39 (24 direct, 15 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2</text>
+    <leakedbytes>39</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x40187A</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>String::String(char const*, char const*)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>26</line>
+    </frame>
+    <frame>
+      <ip>0x40227D</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+(String const&amp;, String const&amp;)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>110</line>
+    </frame>
+    <frame>
+      <ip>0x40241B</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+=(String&amp;, String const&amp;)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>118</line>
+    </frame>
+    <frame>
+      <ip>0x402FDD</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>main</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>test.cpp</file>
+      <line>19</line>
+    </frame>
+  </stack>
+</error>
 
 <errorcounts>
 </errorcounts>

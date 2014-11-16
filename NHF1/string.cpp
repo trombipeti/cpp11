@@ -66,7 +66,7 @@ String & String::operator=( const char* str )
 String & String::operator=( String && rval )
 {
 #ifdef _DEBUG_
-    std::cout << ">> String::operator=(String&&) param: " << rval;
+    std::cout << ">> String::operator=(String&&), param: " << rval;
     std::cout << " (" << _Num_Instances << ") " << std::endl;
 #endif // _DEBUG_
     if( this != &rval )
@@ -93,7 +93,7 @@ String::~String()
 String operator+( String const& lhs, String const& rhs )
 {
 #ifdef _DEBUG_
-    std::cout << ">> operator+(String const&, String const&)" << " params: " << lhs << " " << rhs << std::endl;
+    std::cout << ">> operator+(String const&, String const&), params: " << lhs << " " << rhs << std::endl;
 #endif // _DEBUG_
     std::string a = ( const char* )lhs;
     a.append( ( const char* )rhs );
@@ -103,7 +103,26 @@ String operator+( String const& lhs, String const& rhs )
 String operator+=( String & lhs, String const& rhs )
 {
 #ifdef _DEBUG_
-    std::cout << ">> operator+=(String &, String const&)" << " params: " << lhs << " " << rhs << std::endl;
+    std::cout << ">> operator+=(String &, String const&), params: " << lhs << " " << rhs << std::endl;
+#endif // _DEBUG_
+    lhs = lhs + rhs;
+    return lhs;
+}
+
+String operator+( String const& lhs, char rhs )
+{
+#ifdef _DEBUG_
+    std::cout << ">> operator+(String const&, char), params: " << lhs << " " << rhs << std::endl;
+#endif // _DEBUG_
+    std::string a = ( const char* )lhs;
+    a.append( 1, rhs );
+    return String {a.c_str()};
+}
+
+String operator+=( String & lhs, char rhs )
+{
+#ifdef _DEBUG_
+    std::cout << ">> operator+=(String &, char), params: " << lhs << " " << rhs;
 #endif // _DEBUG_
     lhs = lhs + rhs;
     return lhs;
@@ -115,7 +134,7 @@ std::ostream& operator<<( std::ostream& os, String const& str )
     return os;
 }
 
-std::istream& operator>>(std::istream& is, String & str)
+std::istream& operator>>( std::istream& is, String & str )
 {
     std::string temp;
     is >> temp;

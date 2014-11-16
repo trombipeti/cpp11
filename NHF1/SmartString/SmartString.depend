@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1416168862 source:/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/string.cpp
+1416169800 source:/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/string.cpp
 	<iostream>
 	"string.h"
 
-1416169110 source:/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/test.cpp
+1416175492 source:/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/test.cpp
 	<iostream>
 	"string.h"
 
-1416169070 /media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/string.h
+1416175242 /media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/string.h
 	<cstdio>
 	<cstring>
 	<iostream>

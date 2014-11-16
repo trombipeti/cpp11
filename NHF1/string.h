@@ -27,13 +27,10 @@ public:
         strcpy( m_string, str ); // Bele fog férni, nem kell strncpy(), és ez így gyorsabb
     }
 
-    StringValue( const char* lhs, const char* rhs ) : m_refCount {1}
-    {
-        m_size = strlen( lhs ) + strlen( rhs ) + 1; // +1 -> lezáró 0
-        m_string = new char[m_size];
-        snprintf( m_string, m_size, "%s%s", lhs, rhs );
-    }
-
+    /** \brief
+     * Hagyományos C stringgé castoló operátor. Mivel konstans, nem lehet ezzel módosítani a tárolt értéket.
+     * \return Az értékként tárolt karaktertömb konstans pointere.
+     */
     operator const char*() const
     {
         return m_string;
@@ -80,9 +77,14 @@ public:
         return m_refCount;
     }
 
-    size_t getSize() const
+    /** \brief
+     * Megadja az értékként tárolt karakterek számát.
+     * \return Az eltárolt string hossza (strlen()-el megegyező viselkedés, tehát nincs benne a lezáró 0).
+     *
+     */
+    size_t getCharCount() const
     {
-        return m_size;
+        return strlen( m_string );
     }
 private:
     unsigned long int m_refCount;
@@ -115,12 +117,34 @@ public:
      */
     String( String const& other );
 
-
+    /** \brief
+     * Mozgató konstruktor
+     * \param rval Jobbérték referencia String
+     */
     String( String && rval );
 
+    /** \brief
+     * Értékadó operátor. A paraméterként kapott String belső StringValue-jára
+     * lesz eltárolva egy referencia, illetve annak a referenciaszámlálója meg fog nőni eggyel.
+     * \param other A lemásolandó String.
+     * \return Az other paraméterrel megegyező tartalmú String.
+     */
     String & operator=( String const & other );
 
+    /** \brief
+     * Mozgató értékadó operátor.
+     * \param rval Jobbérték referencia, ennek a StringValue-ját fogja "ellopni."
+     * \return Az rval paraméterrel megegyező tartalmú String.
+     */
     String & operator=( String && rval );
+
+    /** \brief
+     * Hagyományos C stringet használó értékadó operátor.
+     * Ezzel meggyorsul pl a következő kifejezés: String a = "Hello világ";,
+     * mert nem kell a C stringből először Stringet csinálni.
+     * \param str Az értékként tárolni kívánt C string.
+     * \return Az str paramétert értékként tároló String.
+     */
     String & operator=( const char* str );
 
 
@@ -130,19 +154,23 @@ public:
      */
     ~String();
 
+    /** \brief
+     * Megadja a String hoszzát.
+     * \return A Stringben lévő karakterek száma a lezáró nulla nélkül (az strlen()-el hasonló a működése).
+     *
+     */
     size_t length() const
     {
-        return m_stringValue->getSize();
+        return m_stringValue->getCharCount();
     }
 
+    /** \brief
+     * Hagyományos C stringgé castoló operátor. Mivel const minősítőjű, nem lehet ezzel módosítani a Stringet.
+     * \return A belső struktúrában tárolt karaktertömb konstans pointere.
+     */
     operator const char*() const
     {
         return ( const char* )( *m_stringValue );
-    }
-
-    StringValue* getStringValue()
-    {
-        return m_stringValue;
     }
 
 #ifdef _DEBUG_
@@ -184,9 +212,39 @@ String operator+( String const& lhs, String const& rhs );
  */
 String operator+=( String & lhs, String const& rhs );
 
+/** \brief
+ * A megadott string és karakter konkatenáltját állítja elő.
+ * \param lhs A String, amelyre a karaktert fűzzük.
+ * \param rhs A hozzáfűzendő karakter
+ * \return A bal oldali paraméter, + a végén a jobb oldali paraméter
+ */
+String operator+( String const& lhs, char rhs );
+
+/** \brief
+ * Hozzáfűz egy karaktert egy Stringhez
+ * \param lhs Ehhez a Stringhez lesz hozzáfűzva a karakter.
+ * \param rhs Ez a karakter lesz hozzáfűzve a Stringhez.
+ * \return A megadott String, hozzáfűzve a karakter.
+ */
+String operator+=( String & lhs, char rhs );
+
+/** \brief
+ * Kiírja a paraméterként kapott kimenetre a Stringet (pl std::cout << aString; std::cerr << aString; custom::an_ostream << aString;)
+ * \param os A kimenet, ahova a String tartalma ki lesz írva.
+ * \param str A kiírni kívánt String.
+ * \return Az os paraméter, ráírva a str paraméter String tartalma.
+ *
+ */
 std::ostream& operator<<( std::ostream& os, String const& str );
 
-std::istream& operator>>(std::istream& is, String & str);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+std::istream& operator>>( std::istream& is, String & str );
 
 #endif /* STRING_H */
 

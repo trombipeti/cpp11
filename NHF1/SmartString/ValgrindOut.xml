@@ -12,8 +12,8 @@
   <line>Command: /media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString </line>
 </preamble>
 
-<pid>20621</pid>
-<ppid>32026</ppid>
+<pid>12047</pid>
+<ppid>12391</ppid>
 <tool>memcheck</tool>
 
 <args>
@@ -32,21 +32,71 @@
 
 <status>
   <state>RUNNING</state>
-  <time>00:00:00:00.099 </time>
+  <time>00:00:00:00.111 </time>
 </status>
 
 
 <status>
   <state>FINISHED</state>
-  <time>00:00:00:00.966 </time>
+  <time>00:00:00:39.920 </time>
 </status>
 
 <error>
-  <unique>0x1</unique>
+  <unique>0x4</unique>
   <tid>1</tid>
   <kind>Leak_DefinitelyLost</kind>
   <xwhat>
-    <text>39 (24 direct, 15 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2</text>
+    <text>25 (24 direct, 1 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 8</text>
+    <leakedbytes>25</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x401AB0</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>String::String(char const*)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x4025D5</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+(String const&amp;, String const&amp;)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>100</line>
+    </frame>
+    <frame>
+      <ip>0x40281E</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+=(String&amp;, String const&amp;)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>108</line>
+    </frame>
+    <frame>
+      <ip>0x403874</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>main</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>test.cpp</file>
+      <line>28</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x5</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>39 (24 direct, 15 indirect) bytes in 1 blocks are definitely lost in loss record 6 of 8</text>
     <leakedbytes>39</leakedbytes>
     <leakedblocks>1</leakedblocks>
   </xwhat>
@@ -57,36 +107,128 @@
       <fn>operator new(unsigned long)</fn>
     </frame>
     <frame>
-      <ip>0x40187A</ip>
+      <ip>0x401AB0</ip>
       <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
-      <fn>String::String(char const*, char const*)</fn>
+      <fn>String::String(char const*)</fn>
       <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
       <file>string.cpp</file>
-      <line>26</line>
+      <line>14</line>
     </frame>
     <frame>
-      <ip>0x40227D</ip>
+      <ip>0x4025D5</ip>
       <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
       <fn>operator+(String const&amp;, String const&amp;)</fn>
       <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
       <file>string.cpp</file>
-      <line>110</line>
+      <line>100</line>
     </frame>
     <frame>
-      <ip>0x40241B</ip>
+      <ip>0x40281E</ip>
       <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
       <fn>operator+=(String&amp;, String const&amp;)</fn>
       <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
       <file>string.cpp</file>
-      <line>118</line>
+      <line>108</line>
     </frame>
     <frame>
-      <ip>0x402FDD</ip>
+      <ip>0x40358F</ip>
       <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
       <fn>main</fn>
       <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
       <file>test.cpp</file>
-      <line>19</line>
+      <line>20</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>44 (24 direct, 20 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 8</text>
+    <leakedbytes>44</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x401AB0</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>String::String(char const*)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x402B29</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+(String const&amp;, char)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>119</line>
+    </frame>
+    <frame>
+      <ip>0x403953</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>main</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>test.cpp</file>
+      <line>30</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x7</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>45 (24 direct, 21 indirect) bytes in 1 blocks are definitely lost in loss record 8 of 8</text>
+    <leakedbytes>45</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x401AB0</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>String::String(char const*)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>14</line>
+    </frame>
+    <frame>
+      <ip>0x402B29</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+(String const&amp;, char)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>119</line>
+    </frame>
+    <frame>
+      <ip>0x402D53</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>operator+=(String&amp;, char)</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>string.cpp</file>
+      <line>127</line>
+    </frame>
+    <frame>
+      <ip>0x4039E2</ip>
+      <obj>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1/SmartString/bin/Debug/SmartString</obj>
+      <fn>main</fn>
+      <dir>/media/Dropbox/Dropbox/Peti/BME/5_felev/C++11/NHF1</dir>
+      <file>test.cpp</file>
+      <line>31</line>
     </frame>
   </stack>
 </error>

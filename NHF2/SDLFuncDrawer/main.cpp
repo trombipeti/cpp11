@@ -25,19 +25,6 @@ int main ( int argc, char** argv )
         return 1;
     }
 
-    // load an image
-    SDL_Surface* bmp = SDL_LoadBMP("cb.bmp");
-    if (!bmp)
-    {
-        printf("Unable to load bitmap: %s\n", SDL_GetError());
-        return 1;
-    }
-
-    // centre the bitmap on screen
-    SDL_Rect dstrect;
-    dstrect.x = (screen->w - bmp->w) / 2;
-    dstrect.y = (screen->h - bmp->h) / 2;
-
     // program main loop
     bool done = false;
     float d = 0.5f;
@@ -50,12 +37,10 @@ int main ( int argc, char** argv )
             // check for messages
             switch (event.type)
             {
-                // exit if the window is closed
             case SDL_QUIT:
                 done = true;
                 break;
 
-                // check for keypresses
             case SDL_KEYDOWN:
                 {
                     // exit if ESCAPE is pressed
@@ -71,27 +56,18 @@ int main ( int argc, char** argv )
             } // end switch
         } // end of message processing
 
-        // DRAWING STARTS HERE
 
 
-        // clear screen
         SDL_FillRect(screen, 0, SDL_MapRGB(screen->format, 0, 0, 0));
 
-//        // draw bitmap
-//        SDL_BlitSurface(bmp, 0, screen, &dstrect);
         for(int x = 1;x<=640;++x) {
             aalineColor(screen,x-1,sin((x-1)/d)*100 * sin((x-1)/2*d) + 200,x,sin(x/d)*100 * sin(x/2*d) + 200,0xFFFFFF);
         }
 
 
-        // DRAWING ENDS HERE
-
-        // finally, update the screen :)
         SDL_Flip(screen);
     } // end main loop
 
-    // free loaded bitmap
-    SDL_FreeSurface(bmp);
 
     // all is well ;)
     printf("Exited cleanly\n");

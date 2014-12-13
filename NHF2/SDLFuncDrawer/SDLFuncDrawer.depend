@@ -11,9 +11,15 @@
 1418386769 /labor/Desktop/NFH2/SDLFuncDrawer/include/Parser.h
 	<functional>
 
-1418464681 source:/home/trombipeti/Dropbox/Peti/BME/5_felev/C++11/NHF2/SDLFuncDrawer/main.cpp
+1418466137 source:/home/trombipeti/Dropbox/Peti/BME/5_felev/C++11/NHF2/SDLFuncDrawer/main.cpp
 	<cstdlib>
 	<SDL/SDL.h>
 	<SDL/SDL_gfxPrimitives.h>
 	<cmath>
+
+1418387910 source:/home/trombipeti/Dropbox/Peti/BME/5_felev/C++11/NHF2/SDLFuncDrawer/Parser.cpp
+	"Parser.h"
+
+1418465658 /home/trombipeti/Dropbox/Peti/BME/5_felev/C++11/NHF2/SDLFuncDrawer/Parser.h
+	<functional>
 

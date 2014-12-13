@@ -14,7 +14,7 @@ public:
     ParseRuleBase() = default;
     ParseRuleBase(ParseRuleBase const&) = default;
 
-    bool isMatching() {};
+    bool isMatching();
 };
 
 class Parser

@@ -215,6 +215,15 @@ int main(int argc, char* argv[])
 {
 //    std::string expression = "2.71 0 1 - x * ^";
     std::string expression = "x sgn 3.5 x 5 / 2 ^ * sin abs 10 * *";
+    if(argc > 1)
+    {
+        expression = argv[1];
+    }
+    else
+    {
+        std::cerr << "You should give the function to draw in RPN format, e.g \"" << expression << "\"" << std::endl;
+        return 1;
+    }
 
     RPNParser parser{expression};
 
